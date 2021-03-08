@@ -1,0 +1,13 @@
+package com.example.mymovie.core.data.remote.response
+
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
+data class TVShowResponse(
+    val Poster: String,
+    val Title: String,
+    val Type: String,
+    val Year: String,
+    val imdbID: String
+) : Parcelable

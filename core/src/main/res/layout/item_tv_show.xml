@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="130dp"
+    android:layout_height="175dp"
+    android:layout_margin="8dp"
+    android:padding="8dp"
+    app:cardCornerRadius="8dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imageViewTvShow"
+            android:layout_width="150dp"
+            android:layout_height="135dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            android:src="@color/teal_200" />
+
+        <TextView
+            android:id="@+id/textViewTitleTvShow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageViewTvShow"
+            android:gravity="center"
+            android:text="Talking with Ted"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/textViewTitleReleaseDateTvShow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:text="@string/date"
+            android:textSize="12sp"
+            android:textStyle="normal" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
