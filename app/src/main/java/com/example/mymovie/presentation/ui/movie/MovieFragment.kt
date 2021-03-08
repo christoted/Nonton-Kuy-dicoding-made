@@ -79,14 +79,11 @@ class MovieFragment : Fragment(), MovieItemListener {
                                 movieAdapter.notifyDataSetChanged()
                             }
 
-                            Toast.makeText(requireActivity(), "Success", Toast.LENGTH_SHORT)
-                                .show()
 
                         }
                         Status.LOADING -> {
                             binding.progressBar.visibility = View.VISIBLE
-                            Toast.makeText(requireActivity(), "Loading", Toast.LENGTH_SHORT)
-                                .show()
+
                         }
                         Status.ERROR -> {
                             binding.progressBar.visibility = View.GONE

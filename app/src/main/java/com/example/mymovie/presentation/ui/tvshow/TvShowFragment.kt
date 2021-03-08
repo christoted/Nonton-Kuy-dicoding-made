@@ -68,15 +68,11 @@ class TvShowFragment : Fragment(), TVShowListener {
                             tvShows.data?.let {
                                 tvShowAdapter.setTVShows(it)
                             }
-
-                            Toast.makeText(requireActivity(), "Success", Toast.LENGTH_SHORT)
-                                .show()
                         }
 
                         Status.LOADING -> {
                             binding.progressBar.visibility = View.VISIBLE
-                            Toast.makeText(requireActivity(), "Loading", Toast.LENGTH_SHORT)
-                                .show()
+
                         }
 
                         Status.ERROR -> {

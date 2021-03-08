@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="8dp"
-    tools:context=".ui.movie.MovieFragment">
+    tools:context=".presentation.ui.home.MainActivity">
 
     <TextView
         android:id="@+id/textView"
@@ -45,15 +45,19 @@
         tools:layout_editor_absoluteX="-20dp"
         android:layout_marginStart="16dp"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewTVShow"
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPagerBanner"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:transitionName="imageTransition"
-        android:visibility="visible"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTvShow"
-        tools:layout_editor_absoluteX="-9dp"
-        tools:listitem="@layout/item_tv_show" />
+        android:layout_height="125dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:focusableInTouchMode="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTvShow" />
+
+
 
     <ProgressBar
         android:id="@+id/progress_bar"
