@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".ui.detail.DetailCollapseActivity">
+    tools:context=".presentation.ui.detail.DetailCollapseActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
@@ -30,6 +30,7 @@
                 android:layout_height="match_parent"
                 android:adjustViewBounds="true"
                 android:transitionName="imageTransition"
+                android:contentDescription="@string/imagedetail"
                 android:scaleType="matrix" />
 
             <androidx.appcompat.widget.Toolbar

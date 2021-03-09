@@ -1,2 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="talking_with_ted">Talking with Ted</string>
+    <string name="_21_april_2020">21 April 2020</string>
+    <string name="imageitemmovie">imageItemMovie</string>
+</resources>

@@ -23,6 +23,8 @@ import com.example.mymovie.core.data.local.entity.Movie
 import com.example.mymovie.core.data.local.entity.TvShow
 import com.example.mymovie.presentation.ui.detail.DetailCollapseActivity
 import com.example.mymovie.core.vo.Status
+import com.example.mymovie.presentation.ui.movie.banner.ViewPager2Adapter
+import com.example.mymovie.presentation.ui.tvshow.banner.ViewPager2TVShowAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -34,6 +36,8 @@ class TvShowFragment : Fragment(), TVShowListener {
 
     private lateinit var binding: FragmentTvShowBinding
     private lateinit var tvShowAdapter: TVShowAdapter
+
+    private lateinit var viewPager2Adapter: ViewPager2TVShowAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,10 +57,8 @@ class TvShowFragment : Fragment(), TVShowListener {
 
 
             tvShowAdapter = TVShowAdapter(this)
+            viewPager2Adapter = ViewPager2TVShowAdapter()
             viewModel.getTVShow().observe(viewLifecycleOwner, Observer { tvShows ->
-                Log.d("TESTOY", "MESS: ${tvShows.message}")
-                Log.d("TESTOY", "DATA: ${tvShows.data}")
-                Log.d("TESTOY", "STAT: ${tvShows.status}")
                 if (tvShows != null) {
                     when (tvShows.status) {
                         Status.SUCCESS -> {
@@ -67,6 +69,9 @@ class TvShowFragment : Fragment(), TVShowListener {
                             binding.recyclerViewTVShow.visibility = View.VISIBLE
                             tvShows.data?.let {
                                 tvShowAdapter.setTVShows(it)
+                                viewPager2Adapter.setBanner(it)
+
+                                binding.indicator.setViewPager(binding.viewPagerBanner)
                             }
                         }
 
@@ -87,6 +92,9 @@ class TvShowFragment : Fragment(), TVShowListener {
             })
 
             //   listTVShow = viewModel.getTVShow() as ArrayList<TvShow>
+
+            binding.viewPagerBanner.adapter = viewPager2Adapter
+            binding.indicator.setViewPager(binding.viewPagerBanner)
 
             with(binding.recyclerViewTVShow) {
                 layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
