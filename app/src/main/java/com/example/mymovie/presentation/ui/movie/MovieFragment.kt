@@ -17,12 +17,14 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mymovie.MyApplication
 import com.example.mymovie.core.data.local.entity.Movie
+import com.example.mymovie.core.domain.model.Banner
 import com.example.mymovie.databinding.FragmentMovieBinding
 import com.example.mymovie.presentation.ui.detail.DetailActivity
 import com.example.mymovie.presentation.ui.detail.DetailCollapseActivity
 import com.example.mymovie.presentation.ui.tvshow.TVShowAdapter
 import com.example.mymovie.presentation.ui.tvshow.TvShowViewModel
 import com.example.mymovie.core.vo.Status
+import com.example.mymovie.presentation.ui.movie.banner.ViewPager2Adapter
 import com.example.mymovie.presentation.ui.tvshow.TVShowListener
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -34,10 +36,8 @@ class MovieFragment : Fragment(), MovieItemListener {
 
     private val viewModel: MovieViewModel by viewModels ()
     private lateinit var binding: FragmentMovieBinding
-    private lateinit var viewModelTVShow: TvShowViewModel
-    private var listMovie: ArrayList<Movie> = ArrayList()
     private lateinit var movieAdapter: MovieAdapter
-    private lateinit var tvshowAdapter: TVShowAdapter
+    private lateinit var viewPagerAdapter : ViewPager2Adapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,10 +55,13 @@ class MovieFragment : Fragment(), MovieItemListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         if (activity != null) {
+
 
             binding.progressBar.visibility = View.VISIBLE
             movieAdapter = MovieAdapter(this)
+            viewPagerAdapter = ViewPager2Adapter()
 
             viewModel.getMovie().observe(viewLifecycleOwner, Observer { movies ->
                 if (movies != null) {
@@ -77,6 +80,11 @@ class MovieFragment : Fragment(), MovieItemListener {
                                 Log.d(TAG, "onViewCreated: $it")
                                 movieAdapter.setData(it)
                                 movieAdapter.notifyDataSetChanged()
+
+                                viewPagerAdapter.setBanner(it)
+                                viewPagerAdapter.notifyDataSetChanged()
+
+                                binding.indicator.setViewPager(binding.viewPagerBanner)
                             }
 
 
@@ -93,8 +101,13 @@ class MovieFragment : Fragment(), MovieItemListener {
                     }
                 }
 
-
             })
+
+            binding.viewPagerBanner.adapter = viewPagerAdapter
+            binding.indicator.setViewPager(binding.viewPagerBanner)
+
+
+            binding.indicator.setViewPager(binding.viewPagerBanner)
 
             with(binding.recyclerViewMovie) {
                 layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)

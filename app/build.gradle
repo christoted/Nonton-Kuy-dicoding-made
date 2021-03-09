@@ -89,12 +89,10 @@ dependencies {
 
     implementation 'com.android.support.test.espresso:espresso-idling-resource:3.0.2'
 
-    implementation 'androidx.paging:paging-runtime:2.1.2'
+    implementation 'androidx.paging:paging-runtime-ktx:2.1.2'
 
     implementation "androidx.room:room-runtime:$roomRuntimeVersion"
     kapt "androidx.room:room-compiler:$roomVersion"
-
-    implementation 'androidx.paging:paging-runtime:2.1.2'
 
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation "com.squareup.retrofit2:converter-gson:2.9.0"
@@ -113,4 +111,16 @@ dependencies {
     implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hilt_jetpack_version"
     kapt "androidx.hilt:hilt-compiler:$hilt_jetpack_version"
     kaptAndroidTest "androidx.hilt:hilt-compiler:$hilt_jetpack_version"
+
+    //Groupie
+    implementation "com.xwray:groupie:$groupie_version"
+    implementation "com.xwray:groupie-viewbinding:$groupie_version"
+
+    //PageIndicator
+    implementation 'com.romandanylyk:pageindicatorview:1.0.3'
+
+    //CarouselView
+    implementation 'com.synnapps:carouselview:0.1.5'
+
+    implementation 'me.relex:circleindicator:2.1.6'
 }
