@@ -24,6 +24,5 @@ class TvShowViewModel @ViewModelInject constructor (private val catalogueUseCase
         return catalogueUseCase.getAllTVShow().asLiveData()
     }
 
-   // val tvShows = catalogueUseCase.getAllTVShow()
 
 }

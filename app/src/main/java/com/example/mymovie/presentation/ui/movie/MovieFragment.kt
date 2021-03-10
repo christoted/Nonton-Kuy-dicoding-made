@@ -17,7 +17,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mymovie.MyApplication
 import com.example.mymovie.core.data.local.entity.Movie
-import com.example.mymovie.core.domain.model.Banner
 import com.example.mymovie.databinding.FragmentMovieBinding
 import com.example.mymovie.presentation.ui.detail.DetailActivity
 import com.example.mymovie.presentation.ui.detail.DetailCollapseActivity

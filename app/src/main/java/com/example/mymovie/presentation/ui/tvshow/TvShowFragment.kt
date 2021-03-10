@@ -33,7 +33,6 @@ class TvShowFragment : Fragment(), TVShowListener {
 
     private val viewModel: TvShowViewModel by viewModels ()
 
-
     private lateinit var binding: FragmentTvShowBinding
     private lateinit var tvShowAdapter: TVShowAdapter
 
