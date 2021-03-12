@@ -23,12 +23,9 @@ class TVShowSavedFragment : Fragment(), TVShowListener {
 
     private val viewModel: TVShowFavViewModel by viewModels()
 
-
     private lateinit var binding: FragmentTVShowSavedBinding
 
     private lateinit var tvShowAdapter: TVShowAdapter
-
-    private lateinit var listSavedTVShow: ArrayList<TvShow>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,7 +39,6 @@ class TVShowSavedFragment : Fragment(), TVShowListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        listSavedTVShow = ArrayList()
 
         tvShowAdapter = TVShowAdapter(this)
 

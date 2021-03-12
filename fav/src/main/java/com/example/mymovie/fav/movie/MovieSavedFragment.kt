@@ -23,8 +23,6 @@ class MovieSavedFragment : Fragment(), MovieItemListener {
 
     private val viewModel: MovieFavViewModel by viewModels()
 
-    private lateinit var listSavedMovie: ArrayList<Movie>
-
     private lateinit var binding: FragmentMovieSavedBinding
 
     private lateinit var movieAdapter: MovieAdapter
@@ -44,18 +42,13 @@ class MovieSavedFragment : Fragment(), MovieItemListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        listSavedMovie = ArrayList()
-
         movieAdapter = MovieAdapter(this)
 
         if ( activity != null) {
             //    val viewModelFactory = ViewModelFactory.getInstance(requireActivity())
             //      viewModel = ViewModelProvider(this, viewModelFactory)[MovieFavViewModel::class.java]
-            Log.d(MovieFavFragment.TAG, "onViewCreated: ${listSavedMovie.size}")
             viewModel.getMovieSaved().observe(viewLifecycleOwner, Observer {
                 //  listSavedMovie.addAll(it)
-                Log.d(MovieFavFragment.TAG, "onViewCreated: ${listSavedMovie.size}")
                 movieAdapter.setData(it)
 
             })
