@@ -11,6 +11,7 @@ import com.example.mymovie.R
 import com.example.mymovie.databinding.ActivityMainBinding
 import com.example.mymovie.presentation.ui.favourite.FavouriteFragment
 import com.example.mymovie.presentation.ui.movie.MovieFragment
+import com.example.mymovie.presentation.ui.search.SearchFragment
 import com.example.mymovie.presentation.ui.setting.FavouriteActivity
 import com.example.mymovie.presentation.ui.tvshow.TvShowFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -40,6 +41,11 @@ class MainActivity : AppCompatActivity() {
                 R.id.tvShow -> {
                     val tvShowFragment = TvShowFragment()
                     setCurrentFragment(tvShowFragment)
+                }
+
+                R.id.search -> {
+                    val searchFragment = SearchFragment()
+                    setCurrentFragment(searchFragment)
                 }
             }
             true

@@ -123,4 +123,10 @@ dependencies {
     implementation 'com.synnapps:carouselview:0.1.5'
 
     implementation 'me.relex:circleindicator:2.1.6'
+
+    //Lotie
+    implementation "com.airbnb.android:lottie:$lottie_version"
+
+    //Shimmer
+    implementation "com.facebook.shimmer:shimmer:$shimmer_version"
 }
