@@ -38,6 +38,10 @@ buildscript {
         hilt_jetpack_version = '1.0.0-alpha02'
 
         groupie_version = "2.9.0"
+
+        shimmer_version = "0.5.0"
+
+        lottie_version = "3.4.1"
     }
     repositories {
         google()

@@ -10,8 +10,14 @@
 
     <item
         android:id="@+id/tvShow"
-        android:title="TV Show"
         android:icon="@drawable/ic_baseline_tv_24"
+        android:title="TV Show"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/search"
+        android:title="TV Show"
+        android:icon="@drawable/ic_baseline_search_24"
         app:showAsAction="ifRoom"
         />
 

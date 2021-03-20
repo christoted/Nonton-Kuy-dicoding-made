@@ -59,9 +59,12 @@ class MovieFavouriteFragment : Fragment(), MovieItemListener {
             Log.d(MovieFavFragment.TAG, "onViewCreated: ${listSavedMovie.size}")
             viewModel.getMovieSaved().observe(viewLifecycleOwner, Observer {
                 //  listSavedMovie.addAll(it)
-                Log.d(MovieFavFragment.TAG, "onViewCreated: ${listSavedMovie.size}")
-                movieAdapter.setData(it)
-
+                if ( it.isEmpty()) {
+                    binding.layoutEmpty.root.visibility = View.VISIBLE
+                } else {
+                    binding.layoutEmpty.root.visibility = View.GONE
+                    movieAdapter.setData(it)
+                }
             })
         }
 

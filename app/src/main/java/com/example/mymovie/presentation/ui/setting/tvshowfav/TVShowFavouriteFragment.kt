@@ -55,7 +55,13 @@ class TVShowFavouriteFragment : Fragment(), TVShowListener {
 
             viewModel.getSavedTVShow().observe(viewLifecycleOwner, Observer {
                 //  listSavedTVShow.addAll(it)
-                tvShowAdapter.setTVShows(it)
+                if ( it.isEmpty()) {
+                    binding.layoutEmpty.root.visibility = View.VISIBLE
+                } else {
+                    tvShowAdapter.setTVShows(it)
+                    binding.layoutEmpty.root.visibility = View.GONE
+                }
+
             })
         }
 
