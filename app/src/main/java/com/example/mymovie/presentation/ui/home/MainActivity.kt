@@ -31,6 +31,7 @@ class MainActivity : AppCompatActivity() {
         val movieFragment = MovieFragment()
         setCurrentFragment(movieFragment)
 
+
         binding.bottomNavigation.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.movie -> {
