@@ -9,9 +9,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.mymovie.core.data.local.entity.TvShow
-import com.example.mymovie.databinding.FragmentTVShowFavouriteBinding
-import com.example.mymovie.fav.R
 import com.example.mymovie.fav.databinding.FragmentTVShowSavedBinding
 import com.example.mymovie.presentation.ui.detail.DetailCollapseActivity
 import com.example.mymovie.presentation.ui.tvshow.TVShowAdapter

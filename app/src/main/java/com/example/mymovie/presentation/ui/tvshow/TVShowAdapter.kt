@@ -1,10 +1,7 @@
 package com.example.mymovie.presentation.ui.tvshow
 
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -12,9 +9,10 @@ import com.example.mymovie.R
 import com.example.mymovie.core.data.local.entity.TvShow
 import com.example.mymovie.core.databinding.ItemTvShowBinding
 import com.example.mymovie.core.domain.model.TVShowNotEntity
+import com.example.mymovie.presentation.ui.movie.MovieItemListener
 
 class TVShowAdapter(
-    val listener : TVShowListener
+    val listener: TVShowListener
 ) : RecyclerView.Adapter<TVShowAdapter.TVShowViewHolder>() {
 
     private var listTVShow = ArrayList<TVShowNotEntity>()
@@ -50,6 +48,7 @@ class TVShowAdapter(
         init {
             itemView.setOnClickListener {
                 listener.onTVShowClickedListener(adapterPosition)
+
             }
         }
 
