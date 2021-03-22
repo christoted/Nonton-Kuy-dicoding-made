@@ -26,8 +26,8 @@ class DatabaseModule {
         // Add Encryption
          Room.databaseBuilder(
             context,
-            CatalogueDatabase::class.java, "catalogue.db"
-        ).fallbackToDestructiveMigration().build()
+            CatalogueDatabase::class.java, "catalogueTest.db"
+        ).fallbackToDestructiveMigration().openHelperFactory(factory).build()
 
 
     @Provides
