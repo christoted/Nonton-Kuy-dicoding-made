@@ -34,7 +34,9 @@ class MovieFragment : Fragment(), MovieItemListener {
 
 
     private val viewModel: MovieViewModel by viewModels ()
-    private lateinit var binding: FragmentMovieBinding
+    private var _binding: FragmentMovieBinding? = null
+    private val binding get() = _binding!!
+
     private lateinit var movieAdapter: MovieAdapter
     private lateinit var viewPagerAdapter : ViewPager2Adapter
 
@@ -43,7 +45,7 @@ class MovieFragment : Fragment(), MovieItemListener {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentMovieBinding.inflate(layoutInflater, container, false)
+        _binding = FragmentMovieBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -56,7 +58,6 @@ class MovieFragment : Fragment(), MovieItemListener {
 
 
         if (activity != null) {
-
 
             binding.progressBar.visibility = View.VISIBLE
             movieAdapter = MovieAdapter(this)
@@ -78,10 +79,8 @@ class MovieFragment : Fragment(), MovieItemListener {
                             movies.data?.let {
                                 Log.d(TAG, "onViewCreated: $it")
                                 movieAdapter.setData(it)
-                                movieAdapter.notifyDataSetChanged()
 
                                 viewPagerAdapter.setBanner(it)
-                                viewPagerAdapter.notifyDataSetChanged()
 
                                 binding.indicator.setViewPager(binding.viewPagerBanner)
                             }
@@ -131,7 +130,12 @@ class MovieFragment : Fragment(), MovieItemListener {
 
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+        activity?.setActionBar(null)
 
+    }
 
 
 }
