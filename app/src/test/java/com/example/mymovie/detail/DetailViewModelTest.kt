@@ -22,7 +22,7 @@ import org.mockito.invocation.InvocationOnMock
 import org.mockito.junit.MockitoJUnitRunner
 
 
-@RunWith(MockitoJUnitRunner::class)
+//@RunWith(MockitoJUnitRunner::class)
 class DetailViewModelTest {
 
 //    private lateinit var viewModel: DetailViewModel

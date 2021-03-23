@@ -20,7 +20,7 @@ import org.mockito.Mock
 import org.mockito.Mockito.`when`
 import org.mockito.junit.MockitoJUnitRunner
 
-@RunWith(MockitoJUnitRunner::class)
+//@RunWith(MockitoJUnitRunner::class)
 class MovieViewModelTest {
 //    private lateinit var viewModel: MovieViewModel
 //

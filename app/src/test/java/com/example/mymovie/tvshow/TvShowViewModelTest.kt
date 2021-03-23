@@ -23,7 +23,7 @@ import org.mockito.Mockito.`when`
 import org.mockito.junit.MockitoJUnitRunner
 import java.util.*
 
-@RunWith(MockitoJUnitRunner::class)
+//@RunWith(MockitoJUnitRunner::class)
 class TvShowViewModelTest {
 //    private lateinit var viewModel: TvShowViewModel
 //
