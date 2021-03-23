@@ -16,8 +16,7 @@
             android:layout_width="150dp"
             android:layout_height="135dp"
             android:adjustViewBounds="true"
-            android:scaleType="fitXY"
-            android:src="@color/teal_200" />
+            android:scaleType="fitXY" />
 
         <TextView
             android:id="@+id/textViewTitleTvShow"
@@ -36,7 +35,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="30dp"
             android:gravity="center"
-            android:text="@string/date"
+            android:text="DATE"
             android:textSize="12sp"
             android:textStyle="normal" />
 
