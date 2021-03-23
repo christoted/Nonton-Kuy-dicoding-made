@@ -82,6 +82,11 @@ public *;
 # Uncomment if you use RxJava
 -dontwarn java.util.concurrent.Flow*
 
+-dontwarn org.reactivestreams.FlowAdapters
+-dontwarn org.reactivestreams.**
+-dontwarn java.util.concurrent.flow.**
+-dontwarn java.util.concurrent.*
+
 # bottom navigation
 -dontwarn com.roughike.bottombar.**
 

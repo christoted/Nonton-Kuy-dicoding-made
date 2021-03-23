@@ -25,7 +25,6 @@ class RemoteDataSource @Inject constructor(private val catalogueApi: CatalogueAp
         val TAG = RemoteDataSource::class.java.simpleName
     }
 
-
     suspend fun getAllTVShows(): Flow<ApiResponse<TVShowServiceResponse>> {
         return flow {
             try {
