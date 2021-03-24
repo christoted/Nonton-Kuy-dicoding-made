@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="175dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="10dp"
+    android:layout_margin="4dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imageViewSearch"
+            android:layout_width="150dp"
+            android:layout_height="175dp"
+            android:src="@color/vpi__bright_foreground_holo_light"/>
+
+        <TextView
+            android:id="@+id/titleSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/imageViewSearch"
+            android:layout_marginLeft="10dp"
+            android:textSize="25sp"
+            android:layout_marginTop="10dp"
+            android:text="Kung Fu Panda 2"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/imageViewSearch"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            android:layout_below="@+id/titleSearch"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="110dp">
+
+            <TextView
+                android:id="@+id/imbdIdSearch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="T009123" />
+
+            <TextView
+                android:id="@+id/yearSearch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2019"
+                android:layout_marginLeft="150dp"
+
+                />
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

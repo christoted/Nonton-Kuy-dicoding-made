@@ -1,7 +1,9 @@
 package com.example.mymovie.core.data.remote.response
 
+import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
 
+@Keep
 data class MovieServiceResponse(
     @field:SerializedName("Response")
     val Response: String,
