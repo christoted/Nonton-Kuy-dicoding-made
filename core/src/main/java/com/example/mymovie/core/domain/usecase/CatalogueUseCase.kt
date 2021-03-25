@@ -30,5 +30,7 @@ interface CatalogueUseCase {
     fun getBookmarkedMovie(): Flow<List<MovieNotEntity>>
 
     //Search
-    suspend fun getSearchMovie(query: String): Flow<ApiResponse<MovieServiceResponse>>
+    suspend fun getSearchMovie(query: String, page: String): Flow<ApiResponse<MovieServiceResponse>>
+
+    fun getSearchMovieWithoutSuspend(query: String, page: String): Flow<ApiResponse<MovieServiceResponse>>
 }

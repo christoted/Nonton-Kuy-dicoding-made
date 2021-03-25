@@ -16,8 +16,9 @@ interface CatalogueApi {
     @GET("?apikey=99182b8c&s=*panda*&page=1")
     suspend fun getTVShow(): TVShowServiceResponse
 
-    @GET("?apikey=99182b8c&s={query}&page=1")
+    @GET("?apikey=99182b8c")
     suspend fun getSearchMovie(
-        @Query("query") query: String
+        @Query("s") query: String,
+        @Query("page") page: String
     ): MovieServiceResponse
 }

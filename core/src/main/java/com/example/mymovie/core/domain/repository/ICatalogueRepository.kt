@@ -32,7 +32,10 @@ interface ICatalogueRepository {
     fun getBookmarkedMovie(): Flow<List<MovieNotEntity>>
 
     //Search
-    suspend fun getSearchedMovie(query: String): Flow<ApiResponse<MovieServiceResponse>>
+    suspend fun getSearchedMovie(query: String, page: String): Flow<ApiResponse<MovieServiceResponse>>
+
+    //
+    fun getSearchMovieWithoutSuspend(query: String, page: String): Flow<ApiResponse<MovieServiceResponse>>
 
 
 }

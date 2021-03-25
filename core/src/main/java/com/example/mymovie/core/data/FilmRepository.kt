@@ -234,9 +234,13 @@ class FilmRepository @Inject constructor(private val remoteDataSource: RemoteDat
         return flowPagedListBookmarkedMovieNotEntity
     }
 
-    override suspend fun getSearchedMovie(query: String): Flow<ApiResponse<MovieServiceResponse>> {
+    override suspend fun getSearchedMovie(query: String, page: String): Flow<ApiResponse<MovieServiceResponse>> {
 
-        return remoteDataSource.getSearchMovies(query)
+        return remoteDataSource.getSearchMovies(query, page)
+    }
+
+    override fun getSearchMovieWithoutSuspend(query: String, page: String): Flow<ApiResponse<MovieServiceResponse>> {
+        return remoteDataSource.searchMovies(query, page)
     }
 
 }

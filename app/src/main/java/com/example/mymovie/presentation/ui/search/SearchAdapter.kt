@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.mymovie.core.data.remote.response.MovieSearch
 import com.example.mymovie.core.domain.model.MovieNotEntity
 import com.example.mymovie.databinding.FragmentSearchBinding
 import com.example.mymovie.databinding.ItemSearchBinding
@@ -11,9 +12,9 @@ import kotlinx.coroutines.withContext
 
 class SearchAdapter(private val itemListener: MovieSearchItemListener): RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {
 
-    val listMoviesSearch = ArrayList<MovieNotEntity>()
+    val listMoviesSearch = ArrayList<MovieSearch>()
 
-    fun setMoviesSearch(movies: List<MovieNotEntity>) {
+    fun setMoviesSearch(movies: List<MovieSearch>) {
         listMoviesSearch.clear()
         listMoviesSearch.addAll(movies)
         notifyDataSetChanged()
@@ -40,7 +41,7 @@ class SearchAdapter(private val itemListener: MovieSearchItemListener): Recycler
             }
         }
 
-        fun bind(movies: MovieNotEntity) {
+        fun bind(movies: MovieSearch) {
             with(binding) {
                 Glide.with(itemView.context)
                     .load(movies.Poster)

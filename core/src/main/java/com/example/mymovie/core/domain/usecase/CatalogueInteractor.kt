@@ -34,6 +34,10 @@ class CatalogueInteractor @Inject constructor(private val iCatalogueRepository: 
     override fun getBookmarkedMovie(): Flow<List<MovieNotEntity>> = iCatalogueRepository.getBookmarkedMovie()
 
     //Search
-    override suspend fun getSearchMovie(query: String): Flow<ApiResponse<MovieServiceResponse>> = iCatalogueRepository.getSearchedMovie(query)
+    override suspend fun getSearchMovie(query: String, page: String): Flow<ApiResponse<MovieServiceResponse>> = iCatalogueRepository.getSearchedMovie(query, page)
+
+    override fun getSearchMovieWithoutSuspend(query: String, page: String): Flow<ApiResponse<MovieServiceResponse>> {
+        return iCatalogueRepository.getSearchMovieWithoutSuspend(query, page)
+    }
 
 }

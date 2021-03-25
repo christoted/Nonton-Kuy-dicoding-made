@@ -65,21 +65,37 @@ class RemoteDataSource @Inject constructor(private val catalogueApi: CatalogueAp
         }.flowOn(Dispatchers.IO)
     }
 
-    suspend fun getSearchMovies(query: String): Flow<ApiResponse<MovieServiceResponse>> {
+    suspend fun getSearchMovies(query: String, page: String): Flow<ApiResponse<MovieServiceResponse>> {
         return flow {
             try {
-                val response = catalogueApi.getSearchMovie(query)
+                val response = catalogueApi.getSearchMovie(query, page)
                 val dataArray = response.Search
 
                 if (dataArray.isNotEmpty()) {
+                    Log.d("SEARCHMOVIE-REMOTE", "isNotEMpty: $dataArray")
                     emit(ApiResponse.success(response))
                 } else {
                     emit(ApiResponse.empty<MovieServiceResponse>("Empty"))
+                    Log.d("SEARCHMOVIE-REMOTE", "isEmpty: $dataArray")
                 }
 
             } catch (e: Exception) {
                 emit(ApiResponse.error<MovieServiceResponse>(e.toString()))
             }
+        }
+    }
+
+    fun searchMovies(query: String, page: String): Flow<ApiResponse<MovieServiceResponse>> {
+
+        return flow {
+            try {
+                val apiServiceMovie = catalogueApi.getSearchMovie(query, page)
+                emit(ApiResponse.success(apiServiceMovie))
+             } catch (e: Exception) {
+                emit(ApiResponse.error<MovieServiceResponse>("Error"))
+            }
+
+
         }
     }
 
