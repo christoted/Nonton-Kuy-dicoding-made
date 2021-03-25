@@ -25,4 +25,7 @@ interface FilmDataSource {
     fun getBookmarkedTVShow(): LiveData<List<TvShow>>
     //Pagination
     fun getBookmarkedMovie(): LiveData<List<Movie>>
+
+    //Search
+
 }

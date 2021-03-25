@@ -27,5 +27,4 @@ class MovieViewModel @ViewModelInject constructor (private val catalogueUseCase:
 
    // val movies = catalogueUseCase.getAllMovie()
 
-
 }

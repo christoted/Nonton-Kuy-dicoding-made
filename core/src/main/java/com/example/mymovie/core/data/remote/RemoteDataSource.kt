@@ -4,6 +4,7 @@ import android.os.Handler
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.mymovie.core.data.local.entity.Movie
 import com.example.mymovie.core.data.remote.api.CatalogueApi
 import com.example.mymovie.core.data.remote.response.MovieResponse
 import com.example.mymovie.core.data.remote.response.MovieServiceResponse
@@ -62,6 +63,24 @@ class RemoteDataSource @Inject constructor(private val catalogueApi: CatalogueAp
                 Log.e( "getAllMovies: ", e.toString())
             }
         }.flowOn(Dispatchers.IO)
+    }
+
+    suspend fun getSearchMovies(query: String): Flow<ApiResponse<MovieServiceResponse>> {
+        return flow {
+            try {
+                val response = catalogueApi.getSearchMovie(query)
+                val dataArray = response.Search
+
+                if (dataArray.isNotEmpty()) {
+                    emit(ApiResponse.success(response))
+                } else {
+                    emit(ApiResponse.empty<MovieServiceResponse>("Empty"))
+                }
+
+            } catch (e: Exception) {
+                emit(ApiResponse.error<MovieServiceResponse>(e.toString()))
+            }
+        }
     }
 
 

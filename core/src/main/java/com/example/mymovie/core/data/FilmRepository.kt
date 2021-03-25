@@ -1,10 +1,7 @@
 package com.example.mymovie.core.data
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.Transformations
 import androidx.lifecycle.asLiveData
-import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.example.mymovie.core.data.local.LocalDataSource
 import com.example.mymovie.core.data.local.entity.Movie
@@ -237,5 +234,9 @@ class FilmRepository @Inject constructor(private val remoteDataSource: RemoteDat
         return flowPagedListBookmarkedMovieNotEntity
     }
 
+    override suspend fun getSearchedMovie(query: String): Flow<ApiResponse<MovieServiceResponse>> {
+
+        return remoteDataSource.getSearchMovies(query)
+    }
 
 }
