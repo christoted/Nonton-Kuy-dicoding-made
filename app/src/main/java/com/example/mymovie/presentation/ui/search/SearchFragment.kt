@@ -1,7 +1,9 @@
 package com.example.mymovie.presentation.ui.search
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.KeyEvent
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,8 +14,11 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mymovie.core.data.remote.StatusResponse
+import com.example.mymovie.core.utils.DataMapper
 import com.example.mymovie.core.vo.Status
 import com.example.mymovie.databinding.FragmentSearchBinding
+import com.example.mymovie.presentation.ui.detail.DetailActivity
+import com.example.mymovie.presentation.ui.detail.DetailCollapseActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 private const val ARG_PARAM1 = "param1"
@@ -54,33 +59,49 @@ class SearchFragment : Fragment(), MovieSearchItemListener{
 
         searchAdapter = SearchAdapter(this@SearchFragment)
 
-        viewModel.getMovieSearchWithoutSuspend("Avenger", "5").observe(viewLifecycleOwner, Observer {
-            when(it.status) {
-                StatusResponse.SUCCESS -> {
-                    val movieServiceResponse = it.body
-                    val movieListSearch = movieServiceResponse?.Search
+        binding.textInputEditTextSearch.setOnKeyListener(View.OnKeyListener{ view, keyCode, keyEvent ->
+            if ( keyCode == KeyEvent.KEYCODE_ENTER && keyEvent.action == KeyEvent.ACTION_UP) {
 
-                    if ( movieListSearch != null) {
-                        searchAdapter.setMoviesSearch(movieListSearch)
-                    }
+                if ( !binding.textInputEditTextSearch.text.toString().isEmpty()) {
+
+                    val queryText = binding.textInputEditTextSearch.text.toString()
+
+                    viewModel.getMovieSearchWithoutSuspend(queryText, "1").observe(viewLifecycleOwner, Observer {
+                        when(it.status) {
+                            StatusResponse.SUCCESS -> {
+                                val movieServiceResponse = it.body
+                                val movieListSearch = movieServiceResponse?.Search
+
+                                if ( movieListSearch != null) {
+                                    searchAdapter.setMoviesSearch(movieListSearch)
+                                }
+                            }
+
+                            StatusResponse.EMPTY -> {
+                                Log.d("SearchFragmentWithout", "onViewCreated: ${it.body}")
+                                Toast.makeText(activity, "${it.body}}", Toast.LENGTH_SHORT).show()
+                            }
+
+                            StatusResponse.LOADING -> {
+                                Log.d("SearchFragmentWithout", "onViewCreated: ${it.body}")
+                                Toast.makeText(activity, "${it.body}}", Toast.LENGTH_SHORT).show()
+                            }
+
+                            StatusResponse.ERROR -> {
+                                Log.d("SearchFragmentWithout", "onViewCreated: ${it.body}")
+                                Toast.makeText(activity, "${it.body}}", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    })
                 }
 
-                StatusResponse.EMPTY -> {
-                    Log.d("SearchFragmentWithout", "onViewCreated: ${it.body}")
-                    Toast.makeText(activity, "${it.body}}", Toast.LENGTH_SHORT).show()
-                }
 
-                StatusResponse.LOADING -> {
-                    Log.d("SearchFragmentWithout", "onViewCreated: ${it.body}")
-                    Toast.makeText(activity, "${it.body}}", Toast.LENGTH_SHORT).show()
-                }
 
-                StatusResponse.ERROR -> {
-                    Log.d("SearchFragmentWithout", "onViewCreated: ${it.body}")
-                    Toast.makeText(activity, "${it.body}}", Toast.LENGTH_SHORT).show()
-                }
             }
+            false
         })
+
+
 
         with(binding.recyclerViewSearch) {
             layoutManager = LinearLayoutManager(context)
@@ -136,6 +157,10 @@ class SearchFragment : Fragment(), MovieSearchItemListener{
     }
 
     override fun onItemClicked(position: Int) {
-        TODO("Not yet implemented")
+        val movieSelected = searchAdapter.listMoviesSearch[position]
+        val movieNotEntity = DataMapper.mapMovieSearchToMovieNotEntity(movieSelected)
+        val intent = Intent(activity, DetailCollapseActivity::class.java)
+        intent.putExtra(DetailActivity.RECEIVE_INTENT_MOVIE, movieNotEntity)
+        startActivity(intent)
     }
 }
