@@ -22,6 +22,9 @@ class LocalDataSource @Inject constructor(private val catalogueDao: CatalogueDao
 
     suspend fun insertMovie(listMovie: List<Movie>) = catalogueDao.insertMovie(listMovie)
 
+    //Insert Single Movie
+    suspend fun insertSingleMovie(movie: Movie) = catalogueDao.insertSingleMovie(movie)
+
     fun setBookmarkedMovie(movie: Movie, newState: Boolean) {
         movie.bookmarked = newState
         catalogueDao.updateBookmarkedMovie(movie)

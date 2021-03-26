@@ -243,4 +243,12 @@ class FilmRepository @Inject constructor(private val remoteDataSource: RemoteDat
         return remoteDataSource.searchMovies(query, page)
     }
 
+    // Single Insert
+    override fun insertMovie(movie: MovieNotEntity) {
+        val movieEntity = DataMapper.domainToEntityMovie(movie)
+        GlobalScope.launch(Dispatchers.IO) {
+            localDataSource.insertSingleMovie(movieEntity)
+        }
+    }
+
 }

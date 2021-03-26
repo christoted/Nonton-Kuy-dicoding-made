@@ -40,4 +40,8 @@ class CatalogueInteractor @Inject constructor(private val iCatalogueRepository: 
         return iCatalogueRepository.getSearchMovieWithoutSuspend(query, page)
     }
 
+    override fun insertMovie(movie: MovieNotEntity) {
+        iCatalogueRepository.insertMovie(movie)
+    }
+
 }

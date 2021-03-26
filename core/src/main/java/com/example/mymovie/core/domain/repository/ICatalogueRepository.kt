@@ -38,4 +38,6 @@ interface ICatalogueRepository {
     fun getSearchMovieWithoutSuspend(query: String, page: String): Flow<ApiResponse<MovieServiceResponse>>
 
 
+    //Insert Movie
+    fun insertMovie(movie: MovieNotEntity)
 }

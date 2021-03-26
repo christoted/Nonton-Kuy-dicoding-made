@@ -125,9 +125,11 @@ class MovieFragment : Fragment(), MovieItemListener {
     }
 
     override fun onDestroyView() {
+        binding.recyclerViewMovie.adapter = null
         super.onDestroyView()
         _binding = null
         activity?.setActionBar(null)
+
 
     }
 

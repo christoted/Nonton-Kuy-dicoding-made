@@ -33,4 +33,7 @@ interface CatalogueUseCase {
     suspend fun getSearchMovie(query: String, page: String): Flow<ApiResponse<MovieServiceResponse>>
 
     fun getSearchMovieWithoutSuspend(query: String, page: String): Flow<ApiResponse<MovieServiceResponse>>
+
+    //Test Insert
+    fun insertMovie(movie: MovieNotEntity)
 }

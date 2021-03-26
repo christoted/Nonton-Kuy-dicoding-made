@@ -154,10 +154,12 @@ class SearchFragment : Fragment(), MovieSearchItemListener{
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+        binding.recyclerViewSearch.adapter = null
     }
 
     override fun onItemClicked(position: Int) {
         val movieSelected = searchAdapter.listMoviesSearch[position]
+        Toast.makeText(activity, "${movieSelected.imdbID}", Toast.LENGTH_SHORT).show()
         val movieNotEntity = DataMapper.mapMovieSearchToMovieNotEntity(movieSelected)
         val intent = Intent(activity, DetailCollapseActivity::class.java)
         intent.putExtra(DetailActivity.RECEIVE_INTENT_MOVIE, movieNotEntity)
