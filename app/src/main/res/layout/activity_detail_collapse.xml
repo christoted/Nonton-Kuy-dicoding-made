@@ -63,9 +63,6 @@
         android:layout_gravity="center"
         android:visibility="gone" />
 
-    <include
-        android:id="@+id/layout_bottom_sheet"
-        layout="@layout/bottom_sheet"
-        />
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

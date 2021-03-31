@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="50dp"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
     <RelativeLayout
@@ -11,26 +12,25 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-        
+
         <View
             android:id="@+id/bottom_handler"
+            style="@style/TextSubTitleStyle"
             android:layout_width="54dp"
             android:layout_height="4dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/bg_bottom_sheet"
             android:layout_centerHorizontal="true"
-            style="@style/TextSubTitleStyle"
-            />
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_bottom_sheet" />
 
         <TextView
             android:id="@+id/tvTicket"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="How Many Ticket"
             android:layout_below="@+id/bottom_handler"
-            android:layout_margin="16dp"
-            />
-        
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="30dp"
+            android:text="How Many Ticket" />
+
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
