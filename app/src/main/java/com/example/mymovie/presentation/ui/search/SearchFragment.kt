@@ -59,6 +59,8 @@ class SearchFragment : Fragment(), MovieSearchItemListener{
 
         searchAdapter = SearchAdapter(this@SearchFragment)
 
+        binding.searchEmpty.root.visibility = View.VISIBLE
+
         binding.textInputEditTextSearch.setOnKeyListener(View.OnKeyListener{ view, keyCode, keyEvent ->
             if ( keyCode == KeyEvent.KEYCODE_ENTER && keyEvent.action == KeyEvent.ACTION_UP) {
 
@@ -74,6 +76,7 @@ class SearchFragment : Fragment(), MovieSearchItemListener{
 
                                 if ( movieListSearch != null) {
                                     searchAdapter.setMoviesSearch(movieListSearch)
+                                    binding.searchEmpty.root.visibility = View.GONE
                                 }
                             }
 

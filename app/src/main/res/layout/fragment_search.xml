@@ -23,6 +23,11 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <include
+        android:id="@+id/search_empty"
+        layout="@layout/search_empty"
+        android:visibility="gone"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewSearch"
         android:layout_width="match_parent"

@@ -51,6 +51,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/title1"
                 android:textSize="14sp"
+                style="@style/TextSubTitleStyle"
                 tools:layout_editor_absoluteX="167dp"
                 tools:layout_editor_absoluteY="228dp" />
 
@@ -59,6 +60,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/title2"
+                style="@style/TextTitleStyle"
                 android:textSize="22sp"
                 android:textStyle="bold"
                 tools:layout_editor_absoluteX="167dp"
@@ -82,6 +84,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/release_date1"
+                style="@style/TextSubTitleStyle"
                 android:textSize="14sp"
                 tools:layout_editor_absoluteX="167dp"
                 tools:layout_editor_absoluteY="228dp" />
@@ -91,6 +94,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/release_date2"
+                style="@style/TextTitleStyle"
                 android:textSize="22sp"
                 android:textStyle="bold"
                 tools:layout_editor_absoluteX="131dp"
@@ -113,6 +117,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/imbdid1"
                 android:textSize="14sp"
+                style="@style/TextSubTitleStyle"
                 tools:layout_editor_absoluteX="167dp"
                 tools:layout_editor_absoluteY="228dp" />
 
@@ -124,102 +129,11 @@
                 android:text="@string/author"
                 android:textSize="22sp"
                 android:textStyle="bold"
+                style="@style/TextTitleStyle"
                 tools:layout_editor_absoluteX="131dp"
                 tools:layout_editor_absoluteY="307dp" />
         </LinearLayout>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardView">
-
-            <TextView
-                android:id="@+id/tvScreenshot"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:text="@string/screenshot"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@id/tvScreenshot"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal">
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cardViewBelow"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_below="@+id/tvScreenshot"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginRight="24dp"
-                    app:cardCornerRadius="10dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <ImageView
-                        android:id="@+id/imageViewSmallDetailBelow1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:adjustViewBounds="true"
-                        android:contentDescription="@string/imagecontent1"
-                        android:scaleType="fitXY"
-                        android:src="@color/teal_700" />
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cardViewBelow2"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_below="@+id/tvScreenshot"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginRight="24dp"
-                    android:layout_toRightOf="@id/cardViewBelow"
-                    app:cardCornerRadius="10dp">
-
-                    <ImageView
-                        android:id="@+id/imageViewSmallDetailBelow2"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:adjustViewBounds="true"
-                        android:contentDescription="@string/imagecontent1"
-                        android:scaleType="fitXY"
-                        android:src="@color/teal_700" />
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cardViewBelow3"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_below="@+id/tvScreenshot"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginRight="24dp"
-                    android:layout_toRightOf="@id/cardViewBelow2"
-                    app:cardCornerRadius="10dp">
-
-                    <ImageView
-                        android:id="@+id/imageViewSmallDetailBelow3"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:adjustViewBounds="true"
-                        android:contentDescription="@string/imagecontent1"
-                        android:scaleType="fitXY"
-                        android:src="@color/teal_700" />
-                </androidx.cardview.widget.CardView>
-
-            </LinearLayout>
-
-
-        </RelativeLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

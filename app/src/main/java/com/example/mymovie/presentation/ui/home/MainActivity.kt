@@ -31,7 +31,6 @@ class MainActivity : AppCompatActivity() {
 
     private val viewModel: MovieViewModel by viewModels ()
 
-
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,7 +45,7 @@ class MainActivity : AppCompatActivity() {
 
         callTVShowFragment()
 
-
+    //    setSupportActionBar(binding.toolbar)
         binding.bottomNavigation.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.movie -> {
@@ -63,6 +62,19 @@ class MainActivity : AppCompatActivity() {
                     val searchFragment = SearchFragment()
                     setCurrentFragment(searchFragment)
                 }
+            }
+            true
+        }
+
+
+
+        binding.toolbar.setOnMenuItemClickListener { menuItem ->
+            when(menuItem.itemId) {
+
+                R.id.setting -> {
+                    startActivity(Intent(this, FavouriteActivity::class.java))
+                }
+
             }
             true
         }
