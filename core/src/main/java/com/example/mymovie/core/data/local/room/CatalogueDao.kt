@@ -14,6 +14,9 @@ interface CatalogueDao {
     suspend fun insertMovie(listMovie : List<Movie>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertSingleMovie(movie: Movie)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertTVShow(listTvShow: List<TvShow>)
 
     // Pagination

@@ -1,12 +1,13 @@
 package com.example.mymovie.core.data.local.entity
 
-import android.os.Parcel
 import android.os.Parcelable
+import androidx.annotation.Keep
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 
+@Keep
 @Entity(tableName = "tvshowentities")
 @Parcelize
 data class TvShow(

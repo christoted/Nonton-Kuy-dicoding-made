@@ -16,6 +16,10 @@ class DetailViewModel @ViewModelInject constructor (private val catalogueUseCase
 
     private lateinit var imbdID: String
 
+    fun insertMovie(movie: MovieNotEntity){
+        catalogueUseCase.insertMovie(movie)
+    }
+
     fun setSelectedMovie(imbdID: String) {
         this.imbdID = imbdID
     }
@@ -24,8 +28,8 @@ class DetailViewModel @ViewModelInject constructor (private val catalogueUseCase
         this.imbdID = imbdID
     }
 
-    fun setBookMarkedMovie(movie: MovieNotEntity) {
-        val newState = !movie.bookmarked
+    fun setBookMarkedMovie(movie: MovieNotEntity, newState: Boolean) {
+      //  val newState = !movie.bookmarked
         catalogueUseCase.setBookmarkedMovie(movie, newState)
     }
 

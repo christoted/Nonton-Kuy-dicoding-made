@@ -2,6 +2,7 @@
 -keep,includedescriptorclasses class net.sqlcipher.** { *; }
 -keep,includedescriptorclasses interface net.sqlcipher.** { *; }
 
+
 ##---------------Begin: proguard configuration for Gson ----------
 # Gson uses generic type information stored in a class file when working with fields. Proguard
 # removes such information by default, so configure it to keep all of it.
@@ -77,25 +78,23 @@ public *;
 *** rewind();
 }
 
+# Hide warnings about references to newer platforms in the library
+-dontwarn android.support.v7.**
+# don't process support library
+
+# Uncomment for DexGuard only
+#-keepresourcexmlelements manifest/application/meta-data@value=GlideModule
 
 ##---------------Begin: proguard configuration for RxJava ----------
 # Uncomment if you use RxJava
--dontwarn java.util.concurrent.Flow*
+#-dontwarn java.util.concurrent.Flow*
 
--dontwarn org.reactivestreams.FlowAdapters
--dontwarn org.reactivestreams.**
--dontwarn java.util.concurrent.flow.**
--dontwarn java.util.concurrent.*
+-keep  class com.example.mymovie.core.data.FilmRepository
+-keep  class com.example.mymovie.core.data.remote.RemoteDataSource
+-keep  class com.example.mymovie.core.data.remote.response.TVShowSearch
+-keep  class com.example.mymovie.core.data.remote.response.TVShowServiceResponse
+-keep  class com.example.mymovie.core.data.local.LocalDataSource
+-keep  class com.example.mymovie.core.data.local.entity.TvShow
+-keep  class com.example.mymovie.core.domain.model.TVShowNotEntity
 
-# bottom navigation
--dontwarn com.roughike.bottombar.**
 
--dontwarn com.google.android.material.bottomnavigation.BottomNavigationView
-
--keepclassmembers class android.support.design.internal.BottomNavigationMenuView {
-    boolean mShiftingMode;
-}
-
--keepclassmembers class android.material.bottomnavigation.BottomNavigationView {
-    boolean mShiftingMode;
-}

@@ -4,20 +4,33 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import com.example.mymovie.R
+import com.example.mymovie.core.vo.Status
 import com.example.mymovie.databinding.ActivityMainBinding
 import com.example.mymovie.presentation.ui.favourite.FavouriteFragment
 import com.example.mymovie.presentation.ui.movie.MovieFragment
+import com.example.mymovie.presentation.ui.movie.MovieViewModel
 import com.example.mymovie.presentation.ui.search.SearchFragment
 import com.example.mymovie.presentation.ui.setting.FavouriteActivity
 import com.example.mymovie.presentation.ui.tvshow.TvShowFragment
+import com.example.mymovie.presentation.ui.tvshow.TvShowViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+
+
+    private val viewModel: MovieViewModel by viewModels ()
+
 
     private lateinit var binding: ActivityMainBinding
 
@@ -30,6 +43,8 @@ class MainActivity : AppCompatActivity() {
         //     supportActionBar?.elevation = 0f
         val movieFragment = MovieFragment()
         setCurrentFragment(movieFragment)
+
+        callTVShowFragment()
 
 
         binding.bottomNavigation.setOnNavigationItemSelectedListener {
@@ -51,6 +66,31 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
+
+    }
+
+    private fun callTVShowFragment() {
+        viewModel.getMovie().observe(this, Observer { tvShows ->
+            if (tvShows != null) {
+                when (tvShows.status) {
+                    Status.SUCCESS -> {
+                        Log.d("KELUAR GAK PANTEK", "onViewCreated: ${tvShows.data}")
+
+                    }
+
+                    Status.LOADING -> {
+
+
+                    }
+
+                    Status.ERROR -> {
+
+                    }
+                }
+
+
+            }
+        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

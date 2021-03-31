@@ -5,6 +5,7 @@ import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.example.mymovie.core.data.local.entity.Movie
 import com.example.mymovie.core.data.local.entity.TvShow
+import com.example.mymovie.core.data.remote.response.MovieSearch
 import com.example.mymovie.core.domain.model.MovieNotEntity
 import com.example.mymovie.core.domain.model.TVShowNotEntity
 
@@ -39,5 +40,9 @@ object DataMapper {
     }
 
     fun domainToEntityTVShow(it: TVShowNotEntity) = TvShow(it.Poster, it.Title, it.Type, it.Year, it.imdbID, it.bookmarked)
+
+
+    // MovieSearch to MovieNotEntity
+    fun mapMovieSearchToMovieNotEntity(input: MovieSearch) = MovieNotEntity(input.Poster, input.Title, input.Type, input.Year, input.imdbID, false)
 
 }

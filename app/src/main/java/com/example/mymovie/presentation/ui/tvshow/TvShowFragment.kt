@@ -112,6 +112,8 @@ class TvShowFragment : Fragment(), TVShowListener {
     }
 
     override fun onDestroyView() {
+        binding.recyclerViewTVShow.adapter = null
+
         super.onDestroyView()
         _binding = null
         activity?.setActionBar(null)

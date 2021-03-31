@@ -68,12 +68,6 @@ class MovieFragment : Fragment(), MovieItemListener {
                     when (movies.status) {
                         Status.SUCCESS -> {
 
-                            Log.d("TESTOY", "MESS: ${movies.message}")
-                            Log.d("TESTOY", "DATA: ${movies.data}")
-                            Log.d("TESTOY", "STAT: ${movies.status}")
-
-                            Log.d("MOVIE2", "onViewCreated: ${movies.data}")
-
                             binding.progressBar.visibility = View.GONE
                             binding.recyclerViewMovie.visibility = View.VISIBLE
                             movies.data?.let {
@@ -131,9 +125,11 @@ class MovieFragment : Fragment(), MovieItemListener {
     }
 
     override fun onDestroyView() {
+        binding.recyclerViewMovie.adapter = null
         super.onDestroyView()
         _binding = null
         activity?.setActionBar(null)
+
 
     }
 

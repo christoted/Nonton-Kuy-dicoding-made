@@ -1,23 +1,31 @@
 package com.example.mymovie.presentation.ui.search
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.view.KeyEvent
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.mymovie.R
+import android.widget.Toast
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.mymovie.core.data.remote.StatusResponse
+import com.example.mymovie.core.utils.DataMapper
+import com.example.mymovie.core.vo.Status
+import com.example.mymovie.databinding.FragmentSearchBinding
+import com.example.mymovie.presentation.ui.detail.DetailActivity
+import com.example.mymovie.presentation.ui.detail.DetailCollapseActivity
+import dagger.hilt.android.AndroidEntryPoint
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [SearchFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class SearchFragment : Fragment() {
+@AndroidEntryPoint
+class SearchFragment : Fragment(), MovieSearchItemListener{
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -30,24 +38,109 @@ class SearchFragment : Fragment() {
         }
     }
 
+    private var _binding: FragmentSearchBinding ?= null
+    private val binding get() = _binding!!
+
+    private val viewModel: SearchViewModel by viewModels()
+
+    private lateinit var searchAdapter: SearchAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_search, container, false)
+        _binding = FragmentSearchBinding.inflate(layoutInflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        searchAdapter = SearchAdapter(this@SearchFragment)
+
+        binding.textInputEditTextSearch.setOnKeyListener(View.OnKeyListener{ view, keyCode, keyEvent ->
+            if ( keyCode == KeyEvent.KEYCODE_ENTER && keyEvent.action == KeyEvent.ACTION_UP) {
+
+                if ( !binding.textInputEditTextSearch.text.toString().isEmpty()) {
+
+                    val queryText = binding.textInputEditTextSearch.text.toString()
+
+                    viewModel.getMovieSearchWithoutSuspend(queryText, "1").observe(viewLifecycleOwner, Observer {
+                        when(it.status) {
+                            StatusResponse.SUCCESS -> {
+                                val movieServiceResponse = it.body
+                                val movieListSearch = movieServiceResponse?.Search
+
+                                if ( movieListSearch != null) {
+                                    searchAdapter.setMoviesSearch(movieListSearch)
+                                }
+                            }
+
+                            StatusResponse.EMPTY -> {
+                                Log.d("SearchFragmentWithout", "onViewCreated: ${it.body}")
+                                Toast.makeText(activity, "${it.body}}", Toast.LENGTH_SHORT).show()
+                            }
+
+                            StatusResponse.LOADING -> {
+                                Log.d("SearchFragmentWithout", "onViewCreated: ${it.body}")
+                                Toast.makeText(activity, "${it.body}}", Toast.LENGTH_SHORT).show()
+                            }
+
+                            StatusResponse.ERROR -> {
+                                Log.d("SearchFragmentWithout", "onViewCreated: ${it.body}")
+                                Toast.makeText(activity, "${it.body}}", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    })
+                }
+
+
+
+            }
+            false
+        })
+
+
+
+        with(binding.recyclerViewSearch) {
+            layoutManager = LinearLayoutManager(context)
+            setHasFixedSize(true)
+            adapter = searchAdapter
+        }
+
+        viewModel.getMovieSearch()
+        viewModel.movieSearch.observe(viewLifecycleOwner, Observer {
+         //   Log.d("SearchFragment", "onViewCreated: ${it.body}")
+                if ( it != null ) {
+                    when(it.status) {
+                        StatusResponse.SUCCESS -> {
+                            Log.d("SearchFragment", "onViewCreated: ${it.body}")
+                        }
+
+                        StatusResponse.ERROR -> {
+
+                        }
+
+                        StatusResponse.LOADING -> {
+
+                        }
+
+                        StatusResponse.EMPTY -> {
+
+                        }
+                    }
+                }
+
+
+        })
+
+
+
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment SearchFragment.
-         */
-        // TODO: Rename and change types and number of parameters
+
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
             SearchFragment().apply {
@@ -56,5 +149,20 @@ class SearchFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+        binding.recyclerViewSearch.adapter = null
+    }
+
+    override fun onItemClicked(position: Int) {
+        val movieSelected = searchAdapter.listMoviesSearch[position]
+        Toast.makeText(activity, "${movieSelected.imdbID}", Toast.LENGTH_SHORT).show()
+        val movieNotEntity = DataMapper.mapMovieSearchToMovieNotEntity(movieSelected)
+        val intent = Intent(activity, DetailCollapseActivity::class.java)
+        intent.putExtra(DetailActivity.RECEIVE_INTENT_MOVIE, movieNotEntity)
+        startActivity(intent)
     }
 }

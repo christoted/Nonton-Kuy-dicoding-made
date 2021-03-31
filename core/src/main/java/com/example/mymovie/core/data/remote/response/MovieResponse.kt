@@ -1,7 +1,8 @@
 package com.example.mymovie.core.data.remote.response
 
 import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
+import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class MovieResponse(

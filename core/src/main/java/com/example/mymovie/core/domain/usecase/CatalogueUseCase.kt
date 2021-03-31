@@ -2,6 +2,8 @@ package com.example.mymovie.core.domain.usecase
 
 import androidx.lifecycle.LiveData
 import androidx.paging.PagedList
+import com.example.mymovie.core.data.remote.ApiResponse
+import com.example.mymovie.core.data.remote.response.MovieServiceResponse
 import com.example.mymovie.core.domain.model.MovieNotEntity
 import com.example.mymovie.core.domain.model.TVShowNotEntity
 import com.example.mymovie.core.vo.Resource
@@ -26,4 +28,12 @@ interface CatalogueUseCase {
     fun getBookmarkedTVShow(): Flow<List<TVShowNotEntity>>
     //Pagination
     fun getBookmarkedMovie(): Flow<List<MovieNotEntity>>
+
+    //Search
+    suspend fun getSearchMovie(query: String, page: String): Flow<ApiResponse<MovieServiceResponse>>
+
+    fun getSearchMovieWithoutSuspend(query: String, page: String): Flow<ApiResponse<MovieServiceResponse>>
+
+    //Test Insert
+    fun insertMovie(movie: MovieNotEntity)
 }

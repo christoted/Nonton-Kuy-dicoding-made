@@ -2,6 +2,8 @@ package com.example.mymovie.core.domain.usecase
 
 import androidx.lifecycle.LiveData
 import androidx.paging.PagedList
+import com.example.mymovie.core.data.remote.ApiResponse
+import com.example.mymovie.core.data.remote.response.MovieServiceResponse
 import com.example.mymovie.core.domain.model.MovieNotEntity
 import com.example.mymovie.core.domain.model.TVShowNotEntity
 import com.example.mymovie.core.domain.repository.ICatalogueRepository
@@ -30,5 +32,16 @@ class CatalogueInteractor @Inject constructor(private val iCatalogueRepository: 
     override fun getBookmarkedTVShow(): Flow<List<TVShowNotEntity>> = iCatalogueRepository.getBookmarkedTVShow()
 
     override fun getBookmarkedMovie(): Flow<List<MovieNotEntity>> = iCatalogueRepository.getBookmarkedMovie()
+
+    //Search
+    override suspend fun getSearchMovie(query: String, page: String): Flow<ApiResponse<MovieServiceResponse>> = iCatalogueRepository.getSearchedMovie(query, page)
+
+    override fun getSearchMovieWithoutSuspend(query: String, page: String): Flow<ApiResponse<MovieServiceResponse>> {
+        return iCatalogueRepository.getSearchMovieWithoutSuspend(query, page)
+    }
+
+    override fun insertMovie(movie: MovieNotEntity) {
+        iCatalogueRepository.insertMovie(movie)
+    }
 
 }
