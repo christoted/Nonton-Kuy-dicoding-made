@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="TextTitleStyle">
+        <item name="android:fontFamily">@font/poppins_light</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:lineSpacingMultiplier">0.8</item>
+    </style>
+
+    <style name="TextSubTitleStyle">
+        <item name="android:fontFamily">@font/poppins_bold</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:lineSpacingMultiplier">0.8</item>
+    </style>
+</resources>

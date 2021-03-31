@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Search"
+        android:layout_marginTop="50dp"
         app:startIconDrawable="@drawable/ic_baseline_search_24"
         android:padding="16dp">
 
@@ -22,6 +23,11 @@
             android:layout_height="wrap_content" />
 
     </com.google.android.material.textfield.TextInputLayout>
+
+    <include
+        android:id="@+id/search_empty"
+        layout="@layout/search_empty"
+        android:visibility="gone"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewSearch"

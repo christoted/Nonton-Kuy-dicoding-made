@@ -7,4 +7,11 @@
         android:icon="@drawable/ic_baseline_favorite_24"
         app:showAsAction="ifRoom"
         />
+
+<!--    <item-->
+<!--        android:id="@+id/settingBeneran"-->
+<!--        android:title="Setting"-->
+<!--        android:icon="@drawable/ic_baseline_settings_24"-->
+<!--        app:showAsAction="ifRoom"-->
+<!--        />-->
 </menu>
