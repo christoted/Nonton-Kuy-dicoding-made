@@ -14,6 +14,7 @@
         android:layout_marginTop="10dp"
         android:text="Trending TV Show"
         android:textSize="20dp"
+        style="@style/TextSubTitleStyle"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
@@ -21,9 +22,8 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewTVShow"
         android:layout_width="match_parent"
-        android:layout_height="185dp"
+        android:layout_height="225dp"
         android:layout_marginStart="2dp"
-        android:layout_marginTop="5dp"
         android:layout_marginEnd="2dp"
         android:transitionName="imageTransition"
         android:visibility="visible"

@@ -22,7 +22,9 @@
             android:fitsSystemWindows="true"
             app:contentScrim="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:toolbarId="@+id/toolbar">
+            app:toolbarId="@+id/toolbar"
+            app:title=" "
+            style="@style/TextTitleStyle">
 
             <ImageView
                 android:id="@+id/imageView"

@@ -33,8 +33,8 @@ class DetailViewModel @ViewModelInject constructor (private val catalogueUseCase
         catalogueUseCase.setBookmarkedMovie(movie, newState)
     }
 
-    fun setBookMarkedTVShow(tvShow: TVShowNotEntity) {
-        val newState = !tvShow.bookmarked
+    fun setBookMarkedTVShow(tvShow: TVShowNotEntity, newState: Boolean) {
+//        val newState = !tvShow.bookmarked
         catalogueUseCase.setBookmarkedTVShow(tvShow, newState)
     }
 

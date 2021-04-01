@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.ui.search.SearchFragment">
 
     <com.google.android.material.textfield.TextInputLayout
@@ -12,28 +12,36 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Search"
-        android:layout_marginTop="50dp"
-        app:startIconDrawable="@drawable/ic_baseline_search_24"
-        android:padding="16dp">
+        android:padding="16dp"
+        app:startIconDrawable="@drawable/ic_baseline_search_24">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/textInputEditTextSearch"
-            android:inputType="textEmailAddress"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <include
         android:id="@+id/search_empty"
         layout="@layout/search_empty"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewSearch"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/item_search"
+        android:layout_below="@+id/textInputLayoutSearch"
         android:layout_margin="8dp"
-        android:layout_below="@+id/textInputLayoutSearch"/>
+        tools:listitem="@layout/item_search" />
+
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_centerInParent="true" />
+
 </RelativeLayout>

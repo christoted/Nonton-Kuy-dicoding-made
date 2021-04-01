@@ -77,17 +77,21 @@ class SearchFragment : Fragment(), MovieSearchItemListener{
                                 if ( movieListSearch != null) {
                                     searchAdapter.setMoviesSearch(movieListSearch)
                                     binding.searchEmpty.root.visibility = View.GONE
+                                    binding.progressBar.visibility = View.GONE
                                 }
                             }
 
                             StatusResponse.EMPTY -> {
                                 Log.d("SearchFragmentWithout", "onViewCreated: ${it.body}")
                                 Toast.makeText(activity, "${it.body}}", Toast.LENGTH_SHORT).show()
+                                binding.progressBar.visibility = View.VISIBLE
                             }
 
                             StatusResponse.LOADING -> {
                                 Log.d("SearchFragmentWithout", "onViewCreated: ${it.body}")
                                 Toast.makeText(activity, "${it.body}}", Toast.LENGTH_SHORT).show()
+                                binding.progressBar.visibility = View.VISIBLE
+
                             }
 
                             StatusResponse.ERROR -> {
