@@ -97,6 +97,8 @@ class DetailCollapseActivity : AppCompatActivity() {
                 activityDetailCollapseBinding.fab.setOnClickListener {
                     bookmarkedState = !bookmarkedState
                     Toast.makeText(this, "$bookmarkedState", Toast.LENGTH_SHORT).show()
+                    val snackbar =  Snackbar.make(it, "$bookmarkedState", Snackbar.LENGTH_SHORT)
+                    snackbar.show()
                     viewModel.setBookMarkedMovie(movie, bookmarkedState)
                     setBookmarkState(movie.bookmarked)
                 }
@@ -192,9 +194,9 @@ class DetailCollapseActivity : AppCompatActivity() {
 
 
     private fun setBookmarkState(state: Boolean) {
-        if (state == true) {
+        if (state) {
             activityDetailCollapseBinding.fab.setImageResource(R.drawable.ic_baseline_favorite_24)
-        } else if ( state == false){
+        } else {
             activityDetailCollapseBinding.fab.setImageResource(R.drawable.ic_baseline_favorite_border_24)
         }
     }
