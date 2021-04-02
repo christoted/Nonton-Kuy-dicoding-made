@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context=".presentation.ui.home.MainActivity">
+    tools:context=".presentation.ui.home.MainActivity"
+    android:background="@color/teal_700">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBar"
@@ -34,6 +35,7 @@
             android:layout_height="match_parent"
             android:layout_below="@id/appBar"
             android:layout_above="@+id/bottom_navigation"
+            android:background="@drawable/bg_main"
             >
 
 
